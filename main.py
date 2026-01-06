@@ -1,5 +1,6 @@
 import nltk
 import re
+import sys
 from nltk.chat.util import Chat, reflections
 
 nltk.download('punkt')
@@ -25,7 +26,7 @@ class RuleBasedChatbot:
     def respond(self, user_input):
         return self.chat.respond(user_input)
 
-def chat_with_bot():
+def chat_with_bot(chatbot):
     print("Hello, I am your chatbot! Type 'exit' to end the conversation.")
     while True:
         user_input = input("You: ")
@@ -35,15 +36,10 @@ def chat_with_bot():
         response = chatbot.respond(user_input)
         print(f"Chatbot: {response}")
 
-def chat_with_bot():
-    print("Hello, I am your chatbot! Type 'exit' to end the conversation.")
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == 'exit':
-            print("Chatbot: Goodbye! Have a nice day!")
-            break
-        response = chatbot.respond(user_input)
-        print(f"Chatbot: {response}")
-
-chatbot = RuleBasedChatbot(pairs)
-chat_with_bot()
+if __name__ == "__main__":
+    if sys.stdin and sys.stdin.isatty():
+        chatbot = RuleBasedChatbot(pairs)
+        chat_with_bot(chatbot)
+    else:
+        print("Error: The current environment is read-only and cannot accept input.")
+        print("Please run this script in an interactive terminal (e.g., in VS Code, right-click and select 'Run Python File in Terminal').")
