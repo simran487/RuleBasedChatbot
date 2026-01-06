@@ -1,6 +1,5 @@
 import nltk
 import re
-import sys
 from nltk.chat.util import Chat, reflections
 
 nltk.download('punkt')
@@ -37,9 +36,5 @@ def chat_with_bot(chatbot):
         print(f"Chatbot: {response}")
 
 if __name__ == "__main__":
-    if sys.stdin and sys.stdin.isatty():
-        chatbot = RuleBasedChatbot(pairs)
-        chat_with_bot(chatbot)
-    else:
-        print("Error: The current environment is read-only and cannot accept input.")
-        print("Please run this script in an interactive terminal (e.g., in VS Code, right-click and select 'Run Python File in Terminal').")
+    chatbot = RuleBasedChatbot(pairs)
+    chat_with_bot(chatbot)
